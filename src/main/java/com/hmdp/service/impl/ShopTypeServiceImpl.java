@@ -18,7 +18,7 @@ import java.util.List;
  * 服务实现类
  * </p>
  *
- * @author 虎哥
+ * @author SpiderMan_Biu
  * @since 2021-12-22
  */
 @Service
@@ -35,7 +35,7 @@ public class ShopTypeServiceImpl extends ServiceImpl<ShopTypeMapper, ShopType> i
 				if (!CollectionUtil.isEmpty(shoptypeList)) {
 						//3.存在数据
 						List<ShopType> typeList = JSONUtil.toList(shoptypeList.get(0), ShopType.class);
-							//返回数据
+						//返回数据
 						return Result.ok(typeList);
 				}
 				
@@ -43,11 +43,11 @@ public class ShopTypeServiceImpl extends ServiceImpl<ShopTypeMapper, ShopType> i
 				List<ShopType> typeList = query().orderByAsc("sort").list();
 				// 5. 数据库不存在 返回错误信息
 				if (CollectionUtil.isEmpty(typeList)) {
-						return  Result.fail("数据列表没有展示出来");
+						return Result.fail("数据列表没有展示出来");
 				}
 				// 6. 数据库存在,先把数据写入到Redis中
 				String toJsonStr = JSONUtil.toJsonStr(typeList);
-				stringRedisTemplate.opsForList().leftPushAll(key,toJsonStr);
+				stringRedisTemplate.opsForList().leftPushAll(key, toJsonStr);
 				// 7. 返回
 				return Result.ok(typeList);
 		}

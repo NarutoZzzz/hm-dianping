@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.annotation.Resource;
 
 /**
- * @author Ironman
+ * @author SpiderMan_Biu
  * @doto 2022/11/18 14:00
  */
 @Configuration
